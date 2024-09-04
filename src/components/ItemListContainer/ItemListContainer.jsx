@@ -3,11 +3,11 @@ import React from 'react';
 
 const ItemListContainer = ({ greeting }) => {
     return (
-        <div>
-            <h1>{greeting}</h1>
-            {/* Aquí iría el listado de items */}
+        <div className="item-list-container">
+            <h2>{greeting}</h2>
         </div>
     );
-};
+}
 
 export default ItemListContainer;
+

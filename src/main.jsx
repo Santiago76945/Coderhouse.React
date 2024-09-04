@@ -1,8 +1,10 @@
 // src/main.jsx
 import React from 'react';
-import { createRoot } from 'react-dom/client'; // Importa createRoot desde react-dom/client
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap CSS
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Bootstrap JS (incluye Popper.js)
 
 // Encuentra el contenedor de tu aplicación en el DOM
 const container = document.getElementById('root');
@@ -16,4 +18,5 @@ root.render(
         <App />
     </React.StrictMode>
 );
+
 

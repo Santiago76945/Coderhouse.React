@@ -1,27 +1,43 @@
 // src/components/NavBar/NavBar.jsx
 import React from 'react';
-import { Box, Flex, Button, useColorMode, Menu, MenuButton } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import CartWidget from '@components/CartWidget/CartWidget'; // Ruta absoluta
+import CartWidget from '../CartWidget/CartWidget';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './NavBar.css'; // Asegúrate de importar el CSS específico para la barra de navegación
 
 const NavBar = () => {
-    const { colorMode, toggleColorMode } = useColorMode();
-
     return (
-        <Box bg={colorMode === 'light' ? 'gray.100' : 'gray.900'} px={4}>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-                <Box>Logo</Box>
-                <Flex alignItems={'center'}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div className="container-fluid">
+                <a className="navbar-brand mx-auto text-center" href="#">MóvilShop</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link" href="#home">Inicio</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#shop">Tienda</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#smartphones">Smartphones</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#accessories">Accesorios</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#offers">Ofertas</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#contact">Contacto</a>
+                        </li>
+                    </ul>
                     <CartWidget />
-                    <Button onClick={toggleColorMode}>
-                        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                    </Button>
-                </Flex>
-            </Flex>
-        </Box>
+                </div>
+            </div>
+        </nav>
     );
-};
+}
 
 export default NavBar;
-
-

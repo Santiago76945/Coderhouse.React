@@ -1,0 +1,34 @@
+/* src/components/NavBar/NavBar.css */
+
+.navbar {
+    padding: 1rem 0.5rem;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem; /* Ajustar tamaño según preferencia */
+    font-weight: bold;
+    color: #333; /* Color para mayor contraste */
+}
+
+.navbar-toggler {
+    z-index: 1; /* Asegura que el botón de toggler esté siempre accesible */
+}
+
+.navbar-collapse {
+    justify-content: center; /* Centra los elementos del menú cuando está expandido */
+}
+
+.nav-item a {
+    padding: 0.5rem 1rem; /* Ajustar padding para mejor apariencia */
+}
+
+@media (max-width: 992px) {
+    .navbar-brand {
+        position: static;
+        transform: none;
+        margin: auto;
+    }
+}
