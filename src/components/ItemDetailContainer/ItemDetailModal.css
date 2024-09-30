@@ -1,0 +1,139 @@
+/* src/components/ItemDetailModal.css */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+}
+
+.modal-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 50%;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+h2, h4 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+button.btn {
+    background-color: #999;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button.btn:hover {
+    background-color: #777;
+}
+
+/* Ajustes para las imágenes dentro del modal o en las páginas de detalles */
+.item-image {
+    max-width: 100%; /* Las imágenes nunca exceden el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Asegura que se comporte como un bloque */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    border-radius: 5px; /* Opcional: bordes redondeados para un estilo más suave */
+}
+
+/* Opcional: ajustar el tamaño del modal para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%; /* Hace que el modal sea casi del ancho completo en pantallas pequeñas */
+    }
+
+    .item-image {
+        max-width: 100%; /* Las imágenes ocuparán todo el ancho disponible en pantallas pequeñas */
+    }
+}
+
+/* Ajustes para el contenedor de detalles del producto */
+.item-detail-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px; /* Ancho máximo para el contenedor */
+    text-align: center; /* Centra el texto */
+}
+
+.item-detail-container h2 {
+    margin-bottom: 20px; /* Añade espacio entre el título y la imagen */
+    font-size: 2rem;
+    color: #333; /* Color del título */
+}
+
+.item-image {
+    max-width: 40vw; /* Limita el ancho al 40% del viewport */
+    max-height: 40vh; /* Limita el alto al 40% del viewport */
+    width: auto; /* Mantiene la proporción del ancho */
+    height: auto; /* Mantiene la proporción del alto */
+    margin-bottom: 20px; /* Añade espacio debajo de la imagen */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px; /* Bordes redondeados para la imagen */
+}
+
+.item-detail-container p {
+    margin-top: 20px; /* Añade espacio entre la imagen y el texto */
+    font-size: 1.2rem;
+    color: #555; /* Color del texto debajo de la imagen */
+}
+
+.item-detail-container ul {
+    margin-top: 20px; /* Añade espacio entre la lista de especificaciones y el resto */
+    list-style-type: none;
+    padding: 0;
+}
+
+.item-detail-container ul li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.item-detail-container strong {
+    font-weight: bold;
+    color: #333;
+}

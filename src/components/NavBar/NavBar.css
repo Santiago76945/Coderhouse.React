@@ -2,6 +2,8 @@
 
 .navbar {
     padding: 1rem 0.5rem;
+    position: relative; /* Para que el navbar esté dentro del flujo del documento */
+    z-index: 1; /* Mantiene el navbar encima del contenido */
 }
 
 .navbar-brand {
@@ -19,6 +21,14 @@
 
 .navbar-collapse {
     justify-content: center; /* Centra los elementos del menú cuando está expandido */
+    transition: max-height 0.4s ease; /* Animación suave para el menú */
+    max-height: 0; /* El menú estará inicialmente colapsado */
+    overflow: hidden; /* Evita el desbordamiento del menú */
+}
+
+.navbar-collapse.show {
+    max-height: 500px; /* Ajusta este valor según el tamaño del menú */
+    overflow: visible;
 }
 
 .nav-item a {
@@ -31,4 +41,17 @@
         transform: none;
         margin: auto;
     }
+
+    .navbar-collapse {
+        display: block;
+        max-height: 0;
+        overflow: hidden; /* Evita que el contenido del menú se desborde cuando está colapsado */
+        transition: max-height 0.4s ease-in-out; /* Suaviza la expansión del menú */
+    }
+
+    .navbar-collapse.show {
+        max-height: 500px; /* Ajusta este valor según la cantidad de elementos del menú */
+        overflow: visible;
+    }
 }
+
