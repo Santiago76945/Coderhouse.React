@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllProducts, getProductsByCategory } from '../../data/async-mocks';
 import { Link } from 'react-router-dom';
+import './ItemListContainer.css';  // Importa el archivo CSS
 
 const ItemListContainer = ({ category }) => {
     const [items, setItems] = useState([]); // Estado para los productos

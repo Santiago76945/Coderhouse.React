@@ -99,6 +99,17 @@ const products = [
         image: 'nokia83.png',
         specs: ['Pantalla: 6.81 pulgadas FHD+', 'Chip: Snapdragon 765G', 'Cámara: 64MP', 'Capacidad: 64GB, 128GB', 'Resistencia al agua: No especificada'],
         availability: 'En stock'
+    },
+    { 
+        id: 10, 
+        name: 'iPhone 14', 
+        category: 'smartphones', 
+        description: 'Innovación al siguiente nivel con cámaras mejoradas y ProMotion.',
+        detailedDescription: 'El iPhone 14 ofrece una pantalla OLED Super Retina XDR de 6.1 pulgadas con ProMotion, chip A16 Bionic, cámaras con Modo Noche y video en 4K, y resistencia al agua IP68. Disponible en versiones de 128GB, 256GB, y 512GB.',
+        price: 1099, 
+        image: 'iPhone14.jpg',
+        specs: ['Pantalla: 6.1 pulgadas OLED', 'Chip: A16 Bionic', 'Cámara: 12MP dual', 'Capacidad: 128GB, 256GB, 512GB', 'Resistencia al agua: IP68'],
+        availability: 'En stock'
     }
 ];
 
