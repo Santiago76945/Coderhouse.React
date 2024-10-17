@@ -16,7 +16,7 @@ const Checkout = () => {
 
     if (orderCompleted) {
         return (
-            <div className="checkout-container">
+            <div className="checkout-container container">
                 <h2>¡Gracias por tu compra!</h2>
                 <p>Tu pedido ha sido procesado exitosamente.</p>
                 <Link to="/" className="btn btn-primary">Volver al Inicio</Link>
@@ -26,7 +26,7 @@ const Checkout = () => {
 
     if (cartItems.length === 0) {
         return (
-            <div className="checkout-container">
+            <div className="checkout-container container">
                 <h2>Tu carrito está vacío</h2>
                 <Link to="/" className="btn btn-primary">Volver al Inicio</Link>
             </div>
@@ -34,32 +34,34 @@ const Checkout = () => {
     }
 
     return (
-        <div className="checkout-container">
+        <div className="checkout-container container">
             <h2>Resumen de tu compra</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {cartItems.map(item => (
-                        <tr key={item.id}>
-                            <td>{item.name}</td>
-                            <td>{item.quantity}</td>
-                            <td>${item.price}</td>
-                            <td>${item.price * item.quantity}</td>
-                            <td>
-                                <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(item.id)}>Eliminar</button>
-                            </td>
+            <div className="table-responsive">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Subtotal</th>
+                            <th></th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {cartItems.map(item => (
+                            <tr key={item.id}>
+                                <td>{item.name}</td>
+                                <td>{item.quantity}</td>
+                                <td>${item.price}</td>
+                                <td>${item.price * item.quantity}</td>
+                                <td>
+                                    <button className="btn btn-danger btn-sm" onClick={() => removeFromCart(item.id)}>Eliminar</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <h3>Total: ${getTotalPrice()}</h3>
             <button className="btn btn-success" onClick={handleCheckout}>Finalizar Compra</button>
         </div>
@@ -67,4 +69,5 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
 
