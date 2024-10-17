@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../../data/async-mocks';
-import './ItemDetailModal.css'; // Asegúrate de importar el CSS
+import ItemDetail from '../ItemDetail/ItemDetail';
 
 const ItemDetailContainer = () => {
     const { id } = useParams();
@@ -28,21 +28,8 @@ const ItemDetailContainer = () => {
         return <p>Producto no encontrado</p>;
     }
 
-    return (
-        <div className="item-detail-container">
-            <h2>{item.name}</h2>
-            <img src={`/images/${item.image}`} alt={item.name} className="item-image" />
-            <p>{item.detailedDescription}</p>
-            <h4>Especificaciones:</h4>
-            <ul>
-                {item.specs.map((spec, index) => (
-                    <li key={index}>{spec}</li>
-                ))}
-            </ul>
-            <p><strong>Disponibilidad:</strong> {item.availability}</p>
-            <p><strong>Precio:</strong> ${item.price}</p>
-        </div>
-    );
-}
+    return <ItemDetail item={item} />;
+};
 
 export default ItemDetailContainer;
+

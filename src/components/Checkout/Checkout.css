@@ -1,0 +1,15 @@
+/* src/components/Checkout/Checkout.css */
+
+.checkout-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.table {
+    margin-bottom: 20px;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+}

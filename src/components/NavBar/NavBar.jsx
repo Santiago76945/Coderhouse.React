@@ -28,7 +28,7 @@ const NavBar = () => {
                             <Link className="nav-link" to="/">Inicio</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/category/all">Todos los Teléfonos</Link> {/* Enlace a todos los teléfonos */}
+                            <Link className="nav-link" to="/category/all">Todos los Teléfonos</Link>
                         </li>
                     </ul>
                     <CartWidget />
@@ -36,6 +36,7 @@ const NavBar = () => {
             </div>
         </nav>
     );
-}
+};
 
 export default NavBar;
+

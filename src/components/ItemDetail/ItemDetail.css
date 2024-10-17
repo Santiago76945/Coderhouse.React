@@ -1,0 +1,32 @@
+/* src/components/ItemDetail/ItemDetail.css */
+
+.item-detail {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    text-align: center;
+}
+
+.item-image {
+    max-width: 40vw;
+    max-height: 40vh;
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+.quantity-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.quantity-selector .quantity {
+    margin: 0 15px;
+    font-size: 1.5rem;
+}

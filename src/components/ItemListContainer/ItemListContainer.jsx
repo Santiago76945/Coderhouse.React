@@ -1,29 +1,33 @@
 // src/components/ItemListContainer/ItemListContainer.jsx
 
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getAllProducts, getProductsByCategory } from '../../data/async-mocks';
-import { Link } from 'react-router-dom';
-import './ItemListContainer.css';  // Importa el archivo CSS
+import ItemList from '../ItemList/ItemList';
+import './ItemListContainer.css';
 
 const ItemListContainer = ({ category }) => {
-    const [items, setItems] = useState([]); // Estado para los productos
-    const [filteredItems, setFilteredItems] = useState([]); // Estado para los productos filtrados
+    const { id } = useParams();
+    const [items, setItems] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [manufacturerFilter, setManufacturerFilter] = useState(''); // Filtro de fabricante
-    const [priceFilter, setPriceFilter] = useState(''); // Filtro de precio
+    const [manufacturerFilter, setManufacturerFilter] = useState('');
+    const [priceFilter, setPriceFilter] = useState('');
+
+    const currentCategory = category || id;
 
     useEffect(() => {
         const fetchItems = async () => {
             setLoading(true);
             try {
                 let products;
-                if (category === 'all') {
-                    products = await getAllProducts(); // Muestra todos los productos
-                } else if (category) {
-                    products = await getProductsByCategory(category);
+                if (currentCategory === 'all') {
+                    products = await getAllProducts();
+                } else if (currentCategory) {
+                    products = await getProductsByCategory(currentCategory);
                 }
-                setItems(products || []); // Establecer productos
-                setFilteredItems(products || []); // Inicialmente, los productos filtrados son los mismos
+                setItems(products || []);
+                setFilteredItems(products || []);
             } catch (error) {
                 console.error('Error al cargar los productos', error);
             } finally {
@@ -32,13 +36,11 @@ const ItemListContainer = ({ category }) => {
         };
 
         fetchItems();
-    }, [category]);
+    }, [currentCategory]);
 
-    // Función para aplicar los filtros
     const applyFilters = () => {
         let filtered = items;
 
-        // Filtro por fabricante
         if (manufacturerFilter) {
             filtered = filtered.filter(item => {
                 if (manufacturerFilter === 'apple') {
@@ -52,7 +54,6 @@ const ItemListContainer = ({ category }) => {
             });
         }
 
-        // Filtro por precio
         if (priceFilter) {
             filtered = filtered.filter(item => {
                 const price = item.price;
@@ -67,10 +68,9 @@ const ItemListContainer = ({ category }) => {
             });
         }
 
-        setFilteredItems(filtered); // Actualizar los productos filtrados
+        setFilteredItems(filtered);
     };
 
-    // Aplica los filtros cada vez que cambie un filtro
     useEffect(() => {
         applyFilters();
     }, [manufacturerFilter, priceFilter, items]);
@@ -79,16 +79,12 @@ const ItemListContainer = ({ category }) => {
         return <p>Cargando productos...</p>;
     }
 
-    // src/components/ItemListContainer/ItemListContainer.jsx
-
     return (
         <div className="item-list-container">
-            <h2>{category === 'all' ? 'Todos los Teléfonos' : 'Teléfonos por Categoría'}</h2>
+            <h2>{currentCategory === 'all' ? 'Todos los Teléfonos' : 'Teléfonos por Categoría'}</h2>
 
-            {/* Mostrar los filtros solo si estamos en la categoría de "todos los teléfonos" */}
-            {category === 'all' && (
+            {currentCategory === 'all' && (
                 <div className="filters">
-                    {/* Filtro por fabricante */}
                     <label htmlFor="manufacturerFilter">Fabricante:</label>
                     <select
                         id="manufacturerFilter"
@@ -101,7 +97,6 @@ const ItemListContainer = ({ category }) => {
                         <option value="otros">Otros</option>
                     </select>
 
-                    {/* Filtro por precio */}
                     <label htmlFor="priceFilter">Precio:</label>
                     <select
                         id="priceFilter"
@@ -116,24 +111,10 @@ const ItemListContainer = ({ category }) => {
                 </div>
             )}
 
-            <div className="item-list row">
-                {filteredItems.map(item => (
-                    <div key={item.id} className="col-md-4">
-                        <div className="card mb-4 shadow-sm">
-                            <img src={`/images/${item.image}`} className="card-img-top" alt={item.name} />
-                            <div className="card-body">
-                                <h5 className="card-title">{item.name}</h5>
-                                <p>{item.description}</p>
-                                <p>Precio: ${item.price}</p>
-                                <Link to={`/item/${item.id}`} className="btn btn-primary">Ver detalles</Link>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <ItemList items={filteredItems} />
         </div>
     );
-
-}
+};
 
 export default ItemListContainer;
+
