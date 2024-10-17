@@ -18,8 +18,10 @@ function App() {
             <BrowserRouter>
                 <NavBar />
                 <Routes>
+                    {/* Página de inicio con el mensaje de bienvenida, carrusel y teléfonos destacados */}
                     <Route path="/" element={
                         <>
+                            {/* Mensaje de bienvenida */}
                             <div className="welcome-message text-center">
                                 <h1>Bienvenido a ReactShop!</h1>
                                 <p>
@@ -32,9 +34,17 @@ function App() {
                             <FeaturedPhones />
                         </>
                     } />
+                    
+                    {/* Página de categoría de productos */}
                     <Route path="/category/:id" element={<ItemListContainer />} />
+
+                    {/* Página de detalles del producto */}
                     <Route path="/item/:id" element={<ItemDetailContainer />} />
+
+                    {/* Página de todos los teléfonos */}
                     <Route path="/category/all" element={<ItemListContainer category="all" />} />
+
+                    {/* Página de checkout */}
                     <Route path="/checkout" element={<Checkout />} />
                 </Routes>
                 <Footer />
@@ -44,4 +54,5 @@ function App() {
 }
 
 export default App;
+
 

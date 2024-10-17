@@ -24,3 +24,4 @@ const ItemQuantitySelector = ({ quantity, setQuantity }) => {
 };
 
 export default ItemQuantitySelector;
+

@@ -27,10 +27,13 @@ const ItemDetail = ({ item }) => {
             </ul>
             <p><strong>Disponibilidad:</strong> {item.availability}</p>
             <p><strong>Precio:</strong> ${item.price}</p>
+            {/* Componente para seleccionar la cantidad */}
             <ItemQuantitySelector quantity={quantity} setQuantity={setQuantity} />
+            {/* Botón para añadir al carrito */}
             <button className="btn btn-primary" onClick={handleAddToCart}>Añadir al Carrito</button>
         </div>
     );
 };
 
 export default ItemDetail;
+

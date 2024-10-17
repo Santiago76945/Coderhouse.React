@@ -10,7 +10,6 @@ const Checkout = () => {
     const [orderCompleted, setOrderCompleted] = useState(false);
 
     const handleCheckout = () => {
-        // Aquí podrías implementar la lógica para procesar el pedido
         setOrderCompleted(true);
         clearCart();
     };
@@ -68,3 +67,4 @@ const Checkout = () => {
 };
 
 export default Checkout;
+

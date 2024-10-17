@@ -1,27 +1,36 @@
 // src/components/ItemList/ItemList.jsx
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './ItemList.css';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProductById } from '../../data/async-mocks';
+import ItemDetail from '../ItemDetail/ItemDetail';
 
-const ItemList = ({ items }) => {
-    return (
-        <div className="item-list row">
-            {items.map(item => (
-                <div key={item.id} className="col-md-4">
-                    <div className="card mb-4 shadow-sm">
-                        <img src={`/images/${item.image}`} className="card-img-top" alt={item.name} />
-                        <div className="card-body">
-                            <h5 className="card-title">{item.name}</h5>
-                            <p>{item.description}</p>
-                            <p>Precio: ${item.price}</p>
-                            <Link to={`/item/${item.id}`} className="btn btn-primary">Ver detalles</Link>
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
+const ItemDetailContainer = () => {
+    const { id } = useParams();
+    const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchItem = async () => {
+            const product = await getProductById(id);
+            setItem(product);
+            setLoading(false);
+        };
+
+        fetchItem();
+    }, [id]);
+
+    if (loading) {
+        return <p>Cargando detalles del producto...</p>;
+    }
+
+    if (!item) {
+        return <p>Producto no encontrado</p>;
+    }
+
+    return <ItemDetail item={item} />;
 };
 
-export default ItemList;
+export default ItemDetailContainer;
+
+
