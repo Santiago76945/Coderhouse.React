@@ -37,20 +37,20 @@ const Checkout = () => {
         <div className="checkout-container container">
             <h2>Resumen de tu compra</h2>
             <div className="table-responsive">
-                <table className="table">
+                <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unitario</th>
-                            <th>Subtotal</th>
-                            <th></th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio Unitario</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {cartItems.map(item => (
                             <tr key={item.id}>
-                                <td>{item.name}</td>
+                                <td className="product-name">{item.name}</td>
                                 <td>{item.quantity}</td>
                                 <td>${item.price}</td>
                                 <td>${item.price * item.quantity}</td>
@@ -69,5 +69,6 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
 
 
