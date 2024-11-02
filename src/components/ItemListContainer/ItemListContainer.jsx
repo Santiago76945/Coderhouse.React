@@ -16,6 +16,9 @@ const ItemListContainer = ({ category }) => {
 
     const currentCategory = category || id;
 
+    // Log para verificar la categoría actual
+    console.log('Categoría actual:', currentCategory);
+
     useEffect(() => {
         const fetchItems = async () => {
             setLoading(true);
@@ -23,7 +26,7 @@ const ItemListContainer = ({ category }) => {
                 const itemsRef = collection(db, "items");
                 let productsQuery;
 
-                if (currentCategory === 'all') {
+                if (currentCategory === 'all' || !currentCategory) {
                     productsQuery = itemsRef;
                 } else {
                     productsQuery = query(itemsRef, where("category", "==", currentCategory));
@@ -32,8 +35,11 @@ const ItemListContainer = ({ category }) => {
                 const querySnapshot = await getDocs(productsQuery);
                 const products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
+                // Log para verificar los productos obtenidos
+                console.log('Productos obtenidos:', products);
+
                 setItems(products);
-                setFilteredItems(products);
+                setFilteredItems(products); // Inicializa los productos filtrados con todos los productos obtenidos
             } catch (error) {
                 console.error("Error al cargar los productos:", error);
             } finally {
@@ -45,6 +51,9 @@ const ItemListContainer = ({ category }) => {
     }, [currentCategory]);
 
     const applyFilters = () => {
+        // Log para verificar los filtros aplicados
+        console.log('Filtros aplicados:', { manufacturerFilter, priceFilter });
+
         let filtered = items;
 
         if (manufacturerFilter) {
@@ -87,7 +96,7 @@ const ItemListContainer = ({ category }) => {
 
     return (
         <div className="item-list-container">
-            <h2>{currentCategory === 'all' ? 'Todos los Teléfonos' : 'Teléfonos por Categoría'}</h2>
+            <h2>{currentCategory === 'all' ? 'Todos los Teléfonos' : `Teléfonos de ${currentCategory}`}</h2>
 
             {currentCategory === 'all' && (
                 <div className="filters">

@@ -1,36 +1,35 @@
 // src/components/ItemList/ItemList.jsx
 
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getProductById } from '../../data/async-mocks';
-import ItemDetail from '../ItemDetail/ItemDetail';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './ItemList.css';
 
-const ItemDetailContainer = () => {
-    const { id } = useParams();
-    const [item, setItem] = useState(null);
-    const [loading, setLoading] = useState(true);
+const ItemList = ({ items }) => {
+    console.log('Items en ItemList:', items);
 
-    useEffect(() => {
-        const fetchItem = async () => {
-            const product = await getProductById(id);
-            setItem(product);
-            setLoading(false);
-        };
-
-        fetchItem();
-    }, [id]);
-
-    if (loading) {
-        return <p>Cargando detalles del producto...</p>;
+    if (!items || items.length === 0) {
+        return <p>No hay productos disponibles.</p>;
     }
 
-    if (!item) {
-        return <p>Producto no encontrado</p>;
-    }
-
-    return <ItemDetail item={item} />;
+    return (
+        <div className="item-list">
+            {items.map(item => (
+                <div key={item.id} className="item-card">
+                    <h3>{item.name}</h3>
+                    <div className="image-container">
+                        <img src={`/images/${item.image}`} alt={item.name} />
+                    </div>
+                    <p>{item.description}</p>
+                    <p><strong>Precio:</strong> ${item.price}</p>
+                    <Link to={`/item/${item.id}`} className="btn btn-primary">
+                        Ver detalles
+                    </Link>
+                </div>
+            ))}
+        </div>
+    );
 };
 
-export default ItemDetailContainer;
+export default ItemList;
 
 
