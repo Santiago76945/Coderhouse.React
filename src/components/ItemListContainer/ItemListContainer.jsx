@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAllProducts, getProductsByCategory } from '../../data/async-mocks';
+import { collection, getDocs, query, where } from "firebase/firestore";
+import db from '../../config';
 import ItemList from '../ItemList/ItemList';
-import './ItemListContainer.css';
 
 const ItemListContainer = ({ category }) => {
     const { id } = useParams();
@@ -20,16 +20,22 @@ const ItemListContainer = ({ category }) => {
         const fetchItems = async () => {
             setLoading(true);
             try {
-                let products;
+                const itemsRef = collection(db, "items");
+                let productsQuery;
+
                 if (currentCategory === 'all') {
-                    products = await getAllProducts();
-                } else if (currentCategory) {
-                    products = await getProductsByCategory(currentCategory);
+                    productsQuery = itemsRef;
+                } else {
+                    productsQuery = query(itemsRef, where("category", "==", currentCategory));
                 }
-                setItems(products || []);
-                setFilteredItems(products || []);
+
+                const querySnapshot = await getDocs(productsQuery);
+                const products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                setItems(products);
+                setFilteredItems(products);
             } catch (error) {
-                console.error('Error al cargar los productos', error);
+                console.error("Error al cargar los productos:", error);
             } finally {
                 setLoading(false);
             }
